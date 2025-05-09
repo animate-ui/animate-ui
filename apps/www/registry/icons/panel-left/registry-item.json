@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "panel-left-icon",
+  "type": "registry:ui",
+  "title": "Panel Left Icon",
+  "description": "Panel left icon component.",
+  "dependencies": ["motion"],
+  "files": [
+    {
+      "path": "registry/icons/panel-left/index.tsx",
+      "type": "registry:ui",
+      "target": "components/animate-ui/icons/panel-left.tsx"
+    }
+  ]
+}

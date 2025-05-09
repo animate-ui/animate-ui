@@ -6,6 +6,7 @@
     "cli",
     "installation",
     "mcp",
+    "icons",
     "---Components---",
     "components/avatar-group",
     "components/code-editor",
