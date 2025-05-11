@@ -1,7 +1,7 @@
 'use client';
 
 import * as React from 'react';
-import { motion } from 'motion/react';
+import { motion, type Variants } from 'motion/react';
 
 import {
   getVariants,
@@ -14,10 +14,7 @@ type PanelLeftProps = IconProps<keyof typeof variantsList>;
 
 const variantsList = {
   default: {
-    rect: {
-      initial: { transition: { type: 'spring', damping: 10, stiffness: 100 } },
-      animate: { transition: { type: 'spring', damping: 10, stiffness: 100 } },
-    },
+    rect: {},
     bar: {
       initial: { x1: 10.5, y1: 4.5, x2: 10.5, y2: 19.5 },
       animate: {
@@ -64,7 +61,7 @@ const variantsList = {
         transition: { type: 'spring', damping: 20, stiffness: 200 },
       },
     },
-  },
+  } satisfies Record<string, Variants>,
 } as const;
 
 function IconComponent({ size, ...props }: PanelLeftProps) {

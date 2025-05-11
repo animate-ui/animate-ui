@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "clock-icon",
+  "type": "registry:ui",
+  "title": "Clock Icon",
+  "description": "Clock icon component.",
+  "dependencies": [
+    "motion"
+  ],
+  "files": [
+    {
+      "path": "registry/icons/clock/index.tsx",
+      "content": "'use client';\n\nimport * as React from 'react';\nimport { motion, type Variants } from 'motion/react';\n\nimport {\n  getVariants,\n  useAnimateIconContext,\n  IconWrapper,\n  type IconProps,\n} from '@/components/animate-ui/icons/icon';\n\ntype ClockProps = IconProps<keyof typeof variantsList>;\n\nconst variantsList = {\n  default: {\n    circle: {},\n    hours: {\n      initial: {\n        rotate: 0,\n        transition: { ease: 'easeInOut', duration: 0.5 },\n      },\n      animate: {\n        transformOrigin: 'bottom left',\n        rotate: 20,\n        transition: { ease: 'easeInOut', duration: 0.5 },\n      },\n    },\n    minutes: {\n      initial: {\n        rotate: 0,\n        transition: { ease: 'easeInOut', duration: 0.7 },\n      },\n      animate: {\n        transformOrigin: 'top left',\n        rotate: 360,\n        transition: { ease: 'easeInOut', duration: 0.7 },\n      },\n    },\n  } satisfies Record<string, Variants>,\n} as const;\n\nfunction IconComponent({ size, ...props }: ClockProps) {\n  const { controls, animation: animationType } = useAnimateIconContext();\n\n  const variants = getVariants(\n    variantsList,\n    animationType as keyof typeof variantsList,\n  );\n\n  return (\n    <svg\n      xmlns=\"http://www.w3.org/2000/svg\"\n      width={size}\n      height={size}\n      viewBox=\"0 0 24 24\"\n      fill=\"none\"\n      stroke=\"currentColor\"\n      strokeWidth={1.5}\n      strokeLinecap=\"round\"\n      strokeLinejoin=\"round\"\n      {...props}\n    >\n      <motion.circle\n        cx={12}\n        cy={12}\n        r={10}\n        variants={variants.circle}\n        initial=\"initial\"\n        animate={controls}\n      />\n      <motion.line\n        x1={12}\n        y1={8.1}\n        x2={12}\n        y2={12}\n        variants={variants.hours}\n        initial=\"initial\"\n        animate={controls}\n      />\n      <motion.line\n        x1={12}\n        y1={12}\n        x2={17.5}\n        y2={15.9}\n        variants={variants.minutes}\n        initial=\"initial\"\n        animate={controls}\n      />\n    </svg>\n  );\n}\n\nfunction Clock(props: ClockProps) {\n  return <IconWrapper icon={IconComponent} {...props} />;\n}\n\nexport {\n  Clock,\n  Clock as ClockIcon,\n  type ClockProps,\n  type ClockProps as ClockIconProps,\n};\n",
+      "type": "registry:ui",
+      "target": "components/animate-ui/icons/clock.tsx"
+    }
+  ]
+}

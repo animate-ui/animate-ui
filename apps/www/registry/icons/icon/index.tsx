@@ -7,22 +7,35 @@ import {
   type Variants,
 } from 'motion/react';
 
+const staticVariantsList = {
+  path: {
+    initial: { pathLength: 1, opacity: 1 },
+    animate: {
+      pathLength: [0, 1],
+      opacity: [0, 1],
+      transition: { duration: 0.6, ease: 'easeInOut' },
+    },
+  } as Variants,
+} as const;
+
+type StaticVariantsList = keyof typeof staticVariantsList;
+
 interface AnimateIconContextValue {
   controls: AnimationControls;
-  animation: string;
+  animation: StaticVariantsList | string;
 }
 
 interface AnimateIconProps {
   animate?: boolean;
   animateOnHover?: boolean;
   animateOnTap?: boolean;
-  animation?: string;
+  animation?: StaticVariantsList | string;
   children: React.ReactElement<any, any>;
 }
 
 interface IconProps<T> extends React.ComponentProps<'svg'> {
   size?: number;
-  animation?: T | 'path';
+  animation?: T | StaticVariantsList;
   animate?: boolean;
   animateOnHover?: boolean;
   animateOnTap?: boolean;
@@ -31,15 +44,6 @@ interface IconProps<T> extends React.ComponentProps<'svg'> {
 interface IconWrapperProps<T> extends IconProps<T> {
   icon: React.ComponentType<IconProps<T>>;
 }
-
-const pathDrawVariants: Variants = {
-  initial: { pathLength: 1, opacity: 1 },
-  animate: {
-    pathLength: [0, 1],
-    opacity: [0, 1],
-    transition: { duration: 0.6, ease: 'easeInOut' },
-  },
-};
 
 const AnimateIconContext = React.createContext<AnimateIconContextValue | null>(
   null,
@@ -130,17 +134,19 @@ function IconWrapper<T extends string>({
 }
 
 function getVariants<
-  V extends { default: T } & Record<string, T>,
+  V extends { default: T; [key: string]: T },
   T extends Record<string, Variants>,
->(variantsList: V, animationType: keyof V | 'path'): T {
-  if (animationType === 'path') {
+>(variantsList: V, animationType: keyof V | StaticVariantsList): T {
+  if (animationType in staticVariantsList) {
+    const variant = staticVariantsList[animationType as StaticVariantsList];
     const result = {} as T;
     for (const key in variantsList.default) {
-      result[key] = pathDrawVariants as T[Extract<keyof T, string>];
+      result[key] = variant as T[Extract<keyof T, string>];
     }
     return result;
   }
-  return variantsList[animationType as keyof V];
+
+  return variantsList[animationType as keyof V] as T;
 }
 
 export {

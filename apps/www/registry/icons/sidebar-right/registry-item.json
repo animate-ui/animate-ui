@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "sidebar-right-icon",
+  "type": "registry:ui",
+  "title": "Sidebar Right Icon",
+  "description": "Sidebar right icon component.",
+  "dependencies": ["motion"],
+  "files": [
+    {
+      "path": "registry/icons/sidebar-right/index.tsx",
+      "type": "registry:ui",
+      "target": "components/animate-ui/icons/sidebar-right.tsx"
+    }
+  ]
+}

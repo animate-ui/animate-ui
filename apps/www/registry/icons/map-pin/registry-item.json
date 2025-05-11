@@ -1,0 +1,15 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "map-pin-icon",
+  "type": "registry:ui",
+  "title": "Map Pin Icon",
+  "description": "Map pin icon component.",
+  "dependencies": ["motion"],
+  "files": [
+    {
+      "path": "registry/icons/map-pin/index.tsx",
+      "type": "registry:ui",
+      "target": "components/animate-ui/icons/map-pin.tsx"
+    }
+  ]
+}

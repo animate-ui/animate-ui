@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "map-pin-icon",
+  "type": "registry:ui",
+  "title": "Map Pin Icon",
+  "description": "Map pin icon component.",
+  "dependencies": [
+    "motion"
+  ],
+  "files": [
+    {
+      "path": "registry/icons/map-pin/index.tsx",
+      "content": "'use client';\n\nimport * as React from 'react';\nimport { motion, Variants } from 'motion/react';\n\nimport {\n  getVariants,\n  useAnimateIconContext,\n  IconWrapper,\n  type IconProps,\n} from '@/components/animate-ui/icons/icon';\n\ntype MapPinProps = IconProps<keyof typeof variantsList>;\n\nconst variantsList = {\n  default: {\n    group: {\n      initial: {\n        scale: 1,\n        rotate: 0,\n        translateX: 0,\n        translateY: 0,\n        transformOrigin: 'bottom center',\n        transition: { ease: 'easeInOut', duration: 0.3 },\n      },\n      animate: {\n        scale: [1, 0.75, 1, 1],\n        rotate: [0, 30, -15, 0],\n        translateX: [0, 0, 0, 0],\n        translateY: [0, -6, 0, 0],\n        transformOrigin: 'bottom center',\n        transition: { ease: 'easeInOut', duration: 1 },\n      },\n    },\n    circle: {},\n    pin: {},\n  } satisfies Record<string, Variants>,\n  wiggle: {\n    group: {\n      initial: {\n        rotate: 0,\n        transformOrigin: 'bottom center',\n        transition: { ease: 'easeInOut', duration: 0.3 },\n      },\n      animate: {\n        rotate: [0, 12, -10, 0],\n        transformOrigin: 'bottom center',\n        transition: { ease: 'easeInOut', duration: 1 },\n      },\n    },\n    circle: {},\n    pin: {},\n  } satisfies Record<string, Variants>,\n  rotate: {\n    group: {\n      initial: {\n        transform: 'rotate3d(0, 1, 0, 0deg)',\n        transition: { ease: 'easeInOut', duration: 0.7 },\n      },\n      animate: {\n        transform: 'rotate3d(0, 1, 0, 360deg)',\n        transition: { ease: 'easeInOut', duration: 0.7 },\n      },\n    },\n    circle: {},\n    pin: {},\n  } satisfies Record<string, Variants>,\n} as const;\n\nfunction IconComponent({ size, ...props }: MapPinProps) {\n  const { controls, animation: animationType } = useAnimateIconContext();\n  const variants = getVariants(\n    variantsList,\n    animationType as keyof typeof variantsList,\n  );\n\n  return (\n    <svg\n      xmlns=\"http://www.w3.org/2000/svg\"\n      width={size}\n      height={size}\n      viewBox=\"0 0 24 24\"\n      fill=\"none\"\n      stroke=\"currentColor\"\n      strokeWidth={1.5}\n      strokeLinecap=\"round\"\n      strokeLinejoin=\"round\"\n      style={{ perspective: '600px' }}\n      {...props}\n    >\n      <motion.g variants={variants.group} initial=\"initial\" animate={controls}>\n        <motion.circle\n          cx={12}\n          cy={10.55}\n          r={3.4}\n          variants={variants.circle}\n          initial=\"initial\"\n          animate={controls}\n        />\n        <motion.path\n          d=\"M9.87,21.24c1.04,1,2.68,1.02,3.75.05,2.75-2.52,6.88-6.88,6.88-10.94,0-4.61-3.81-8.34-8.5-8.34S3.5,5.74,3.5,10.34c0,4.04,3.76,8.37,6.37,10.89Z\"\n          variants={variants.pin}\n          initial=\"initial\"\n          animate={controls}\n        />\n      </motion.g>\n    </svg>\n  );\n}\n\nfunction MapPin(props: MapPinProps) {\n  return <IconWrapper icon={IconComponent} {...props} />;\n}\n\nexport {\n  MapPin,\n  MapPin as MapPinIcon,\n  type MapPinProps,\n  type MapPinProps as MapPinIconProps,\n};\n",
+      "type": "registry:ui",
+      "target": "components/animate-ui/icons/map-pin.tsx"
+    }
+  ]
+}
