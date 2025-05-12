@@ -11,5 +11,19 @@
       "type": "registry:ui",
       "target": "components/animate-ui/icons/cross.tsx"
     }
-  ]
+  ],
+  "meta": {
+    "keywords": [
+      "cross",
+      "x",
+      "delete",
+      "close",
+      "cancel",
+      "remove",
+      "clear",
+      "math",
+      "multiply",
+      "multiplication"
+    ]
+  }
 }

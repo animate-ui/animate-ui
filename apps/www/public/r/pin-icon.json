@@ -14,5 +14,15 @@
       "type": "registry:ui",
       "target": "components/animate-ui/icons/pin.tsx"
     }
-  ]
+  ],
+  "meta": {
+    "keywords": [
+      "pin",
+      "map",
+      "location",
+      "lock",
+      "fixed",
+      "anchor"
+    ]
+  }
 }

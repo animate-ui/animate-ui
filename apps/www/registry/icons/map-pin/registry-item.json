@@ -11,5 +11,16 @@
       "type": "registry:ui",
       "target": "components/animate-ui/icons/map-pin.tsx"
     }
-  ]
+  ],
+  "meta": {
+    "keywords": [
+      "map-pin",
+      "map",
+      "pin",
+      "location",
+      "waypoint",
+      "marker",
+      "drop"
+    ]
+  }
 }

@@ -171,6 +171,7 @@ export const index: Record<string, any> = {`;
     devDependencies: ${JSON.stringify(item.devDependencies)},
     registryDependencies: ${JSON.stringify(item.registryDependencies)},
     files: ${JSON.stringify(filesWithContent, null, 2)},
+    keywords: ${JSON.stringify(item.meta?.keywords ?? [])},
     component: ${
       componentPath
         ? `(function() {

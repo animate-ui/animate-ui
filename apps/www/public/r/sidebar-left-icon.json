@@ -14,5 +14,19 @@
       "type": "registry:ui",
       "target": "components/animate-ui/icons/sidebar-left.tsx"
     }
-  ]
+  ],
+  "meta": {
+    "keywords": [
+      "sidebar",
+      "panel",
+      "menu",
+      "drawer",
+      "navigation",
+      "drawer-left",
+      "navigation-left",
+      "menu-left",
+      "sidebar-left",
+      "panel-left"
+    ]
+  }
 }

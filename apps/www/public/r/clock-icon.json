@@ -14,5 +14,14 @@
       "type": "registry:ui",
       "target": "components/animate-ui/icons/clock.tsx"
     }
-  ]
+  ],
+  "meta": {
+    "keywords": [
+      "clock",
+      "time",
+      "watch",
+      "alarm",
+      "timer"
+    ]
+  }
 }

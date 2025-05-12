@@ -2409,7 +2409,16 @@
           "type": "registry:ui",
           "target": "components/animate-ui/icons/clock.tsx"
         }
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "clock",
+          "time",
+          "watch",
+          "alarm",
+          "timer"
+        ]
+      }
     },
     {
       "name": "cross-icon",
@@ -2425,7 +2434,21 @@
           "type": "registry:ui",
           "target": "components/animate-ui/icons/cross.tsx"
         }
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "cross",
+          "x",
+          "delete",
+          "close",
+          "cancel",
+          "remove",
+          "clear",
+          "math",
+          "multiply",
+          "multiplication"
+        ]
+      }
     },
     {
       "name": "icon",
@@ -2457,7 +2480,18 @@
           "type": "registry:ui",
           "target": "components/animate-ui/icons/map-pin.tsx"
         }
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "map-pin",
+          "map",
+          "pin",
+          "location",
+          "waypoint",
+          "marker",
+          "drop"
+        ]
+      }
     },
     {
       "name": "pin-icon",
@@ -2473,7 +2507,17 @@
           "type": "registry:ui",
           "target": "components/animate-ui/icons/pin.tsx"
         }
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "pin",
+          "map",
+          "location",
+          "lock",
+          "fixed",
+          "anchor"
+        ]
+      }
     },
     {
       "name": "plus-icon",
@@ -2489,7 +2533,22 @@
           "type": "registry:ui",
           "target": "components/animate-ui/icons/plus.tsx"
         }
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "plus",
+          "add",
+          "sum",
+          "addition",
+          "math",
+          "maths",
+          "new",
+          "+",
+          "increase",
+          "positive",
+          "calculate"
+        ]
+      }
     },
     {
       "name": "sidebar-left-icon",
@@ -2505,7 +2564,21 @@
           "type": "registry:ui",
           "target": "components/animate-ui/icons/sidebar-left.tsx"
         }
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "sidebar",
+          "panel",
+          "menu",
+          "drawer",
+          "navigation",
+          "drawer-left",
+          "navigation-left",
+          "menu-left",
+          "sidebar-left",
+          "panel-left"
+        ]
+      }
     },
     {
       "name": "sidebar-right-icon",
@@ -2521,7 +2594,21 @@
           "type": "registry:ui",
           "target": "components/animate-ui/icons/sidebar-right.tsx"
         }
-      ]
+      ],
+      "meta": {
+        "keywords": [
+          "sidebar",
+          "panel",
+          "menu",
+          "drawer",
+          "navigation",
+          "drawer-right",
+          "navigation-right",
+          "menu-right",
+          "sidebar-right",
+          "panel-right"
+        ]
+      }
     },
     {
       "name": "radix-accordion",

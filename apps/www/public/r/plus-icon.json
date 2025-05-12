@@ -14,5 +14,20 @@
       "type": "registry:ui",
       "target": "components/animate-ui/icons/plus.tsx"
     }
-  ]
+  ],
+  "meta": {
+    "keywords": [
+      "plus",
+      "add",
+      "sum",
+      "addition",
+      "math",
+      "maths",
+      "new",
+      "+",
+      "increase",
+      "positive",
+      "calculate"
+    ]
+  }
 }
