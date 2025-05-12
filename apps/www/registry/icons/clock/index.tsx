@@ -10,9 +10,9 @@ import {
   type IconProps,
 } from '@/registry/icons/icon';
 
-type ClockProps = IconProps<keyof typeof variantsList>;
+type ClockProps = IconProps<keyof typeof animations>;
 
-const variantsList = {
+const animations = {
   default: {
     circle: {},
     hours: {
@@ -44,8 +44,8 @@ function IconComponent({ size, ...props }: ClockProps) {
   const { controls, animation: animationType } = useAnimateIconContext();
 
   const variants = getVariants(
-    variantsList,
-    animationType as keyof typeof variantsList,
+    animations,
+    animationType as keyof typeof animations,
   );
 
   return (
@@ -96,6 +96,7 @@ function Clock(props: ClockProps) {
 }
 
 export {
+  animations,
   Clock,
   Clock as ClockIcon,
   type ClockProps,

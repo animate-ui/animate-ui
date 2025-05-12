@@ -10,9 +10,9 @@ import {
   type IconProps,
 } from '@/registry/icons/icon';
 
-type PanelLeftProps = IconProps<keyof typeof variantsList>;
+type PanelLeftProps = IconProps<keyof typeof animations>;
 
-const variantsList = {
+const animations = {
   default: {
     rect: {},
     bar: {
@@ -68,8 +68,8 @@ function IconComponent({ size, ...props }: PanelLeftProps) {
   const { controls, animation: animationType } = useAnimateIconContext();
 
   const variants = getVariants(
-    variantsList,
-    animationType as keyof typeof variantsList,
+    animations,
+    animationType as keyof typeof animations,
   );
 
   return (
@@ -141,6 +141,7 @@ function PanelLeft(props: PanelLeftProps) {
 }
 
 export {
+  animations,
   PanelLeft,
   PanelLeft as PanelLeftIcon,
   type PanelLeftProps,

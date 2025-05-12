@@ -7,7 +7,7 @@ import {
   type Variants,
 } from 'motion/react';
 
-const staticVariantsList = {
+const staticAnimations = {
   path: {
     initial: { pathLength: 1, opacity: 1 },
     animate: {
@@ -18,24 +18,24 @@ const staticVariantsList = {
   } as Variants,
 } as const;
 
-type StaticVariantsList = keyof typeof staticVariantsList;
+type StaticAnimations = keyof typeof staticAnimations;
 
 interface AnimateIconContextValue {
   controls: AnimationControls;
-  animation: StaticVariantsList | string;
+  animation: StaticAnimations | string;
 }
 
 interface AnimateIconProps {
   animate?: boolean;
   animateOnHover?: boolean;
   animateOnTap?: boolean;
-  animation?: StaticVariantsList | string;
+  animation?: StaticAnimations | string;
   children: React.ReactElement<any, any>;
 }
 
 interface IconProps<T> extends React.ComponentProps<'svg'> {
   size?: number;
-  animation?: T | StaticVariantsList;
+  animation?: T | StaticAnimations;
   animate?: boolean;
   animateOnHover?: boolean;
   animateOnTap?: boolean;
@@ -112,6 +112,21 @@ function IconWrapper<T extends string>({
   icon: IconComponent,
   ...props
 }: IconWrapperProps<T>) {
+  const context = React.useContext(AnimateIconContext);
+
+  if (context) {
+    const { controls, animation: parentAnimation } = context;
+    const animationToUse = animationProp ?? parentAnimation;
+
+    return (
+      <AnimateIconContext.Provider
+        value={{ controls, animation: animationToUse }}
+      >
+        <IconComponent ref={ref} size={size} {...props} />
+      </AnimateIconContext.Provider>
+    );
+  }
+
   if (
     animate !== undefined ||
     animateOnHover ||
@@ -136,20 +151,21 @@ function IconWrapper<T extends string>({
 function getVariants<
   V extends { default: T; [key: string]: T },
   T extends Record<string, Variants>,
->(variantsList: V, animationType: keyof V | StaticVariantsList): T {
-  if (animationType in staticVariantsList) {
-    const variant = staticVariantsList[animationType as StaticVariantsList];
+>(animations: V, animationType: keyof V | StaticAnimations): T {
+  if (animationType in staticAnimations) {
+    const variant = staticAnimations[animationType as StaticAnimations];
     const result = {} as T;
-    for (const key in variantsList.default) {
+    for (const key in animations.default) {
       result[key] = variant as T[Extract<keyof T, string>];
     }
     return result;
   }
 
-  return variantsList[animationType as keyof V] as T;
+  return animations[animationType as keyof V] as T;
 }
 
 export {
+  staticAnimations,
   AnimateIcon,
   IconWrapper,
   useAnimateIconContext,

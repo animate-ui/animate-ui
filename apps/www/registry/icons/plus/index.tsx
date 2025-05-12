@@ -10,9 +10,9 @@ import {
   type IconProps,
 } from '@/registry/icons/icon';
 
-type PlusProps = IconProps<keyof typeof variantsList>;
+type PlusProps = IconProps<keyof typeof animations>;
 
-const variantsList = {
+const animations = {
   default: {
     line1: {
       initial: {
@@ -41,8 +41,8 @@ function IconComponent({ size, ...props }: PlusProps) {
   const { controls, animation: animationType } = useAnimateIconContext();
 
   const variants = getVariants(
-    variantsList,
-    animationType as keyof typeof variantsList,
+    animations,
+    animationType as keyof typeof animations,
   );
 
   return (
@@ -85,6 +85,7 @@ function Plus(props: PlusProps) {
 }
 
 export {
+  animations,
   Plus,
   Plus as PlusIcon,
   type PlusProps,

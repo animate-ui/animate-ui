@@ -10,9 +10,9 @@ import {
   type IconProps,
 } from '@/registry/icons/icon';
 
-type CrossProps = IconProps<keyof typeof variantsList>;
+type CrossProps = IconProps<keyof typeof animations>;
 
-const variantsList = {
+const animations = {
   default: {
     line1: {
       initial: {
@@ -41,8 +41,8 @@ function IconComponent({ size, ...props }: CrossProps) {
   const { controls, animation: animationType } = useAnimateIconContext();
 
   const variants = getVariants(
-    variantsList,
-    animationType as keyof typeof variantsList,
+    animations,
+    animationType as keyof typeof animations,
   );
 
   return (
@@ -85,6 +85,7 @@ function Cross(props: CrossProps) {
 }
 
 export {
+  animations,
   Cross,
   Cross as CrossIcon,
   type CrossProps,

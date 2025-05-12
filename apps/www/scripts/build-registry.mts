@@ -180,6 +180,9 @@ export const index: Record<string, any> = {`;
           key => typeof mod[key] === 'function' || typeof mod[key] === 'object'
         ) || "${item.name}";
         const Comp = mod.default || mod[exportName];
+        if (mod.animations) {
+          (LazyComp as any).animations = mod.animations;
+        }
         return { default: Comp };
       });
       LazyComp.demoProps = ${JSON.stringify(item?.meta?.demoProps ?? {})};

@@ -10,9 +10,9 @@ import {
   type IconProps,
 } from '@/registry/icons/icon';
 
-type MapPinProps = IconProps<keyof typeof variantsList>;
+type MapPinProps = IconProps<keyof typeof animations>;
 
-const variantsList = {
+const animations = {
   default: {
     group: {
       initial: {
@@ -70,8 +70,8 @@ const variantsList = {
 function IconComponent({ size, ...props }: MapPinProps) {
   const { controls, animation: animationType } = useAnimateIconContext();
   const variants = getVariants(
-    variantsList,
-    animationType as keyof typeof variantsList,
+    animations,
+    animationType as keyof typeof animations,
   );
 
   return (
@@ -113,6 +113,7 @@ function MapPin(props: MapPinProps) {
 }
 
 export {
+  animations,
   MapPin,
   MapPin as MapPinIcon,
   type MapPinProps,

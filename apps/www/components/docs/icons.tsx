@@ -2,9 +2,11 @@
 
 import { index } from '@/__registry__';
 import { MotionHighlight } from '@/registry/effects/motion-highlight';
-import { AnimateIcon } from '@/registry/icons/icon';
+import { AnimateIcon, staticAnimations } from '@/registry/icons/icon';
 import { Tabs, TabsList, TabsTrigger } from '@/registry/radix/tabs';
 import { Input } from '@workspace/ui/components/ui/input';
+
+const staticAnimationsLength = Object.keys(staticAnimations).length;
 
 export const Icons = () => {
   const icons = Object.values(index).filter((icon) =>
@@ -40,15 +42,25 @@ export const Icons = () => {
           className="ring-2 ring-blue-500 bg-transparent rounded-lg -z-1"
           hover
         >
-          {icons.map((icon) => (
-            <AnimateIcon key={icon.name} animateOnHover>
-              <div className="relative flex items-center justify-center size-full aspect-square rounded-lg p-2.5">
-                <icon.component className="text-current size-full" />
+          {icons.map((icon) => {
+            const animationsLength = Object.keys(
+              icon.component.animations ?? {},
+            ).length;
+            return (
+              <AnimateIcon key={icon.name} animateOnHover>
+                <div className="relative group flex items-center justify-center size-full aspect-square rounded-lg p-2.5">
+                  <icon.component className="text-current size-full" />
 
-                <div className="absolute inset-0 bg-muted rounded-lg -z-2" />
-              </div>
-            </AnimateIcon>
-          ))}
+                  <div className="absolute inset-0 bg-muted rounded-lg -z-2" />
+                  <div className="absolute -bottom-2.5 -right-2.5 flex items-center justify-center text-muted-foreground font-medium size-5 bg-background border group-hover:border-blue-500 transition-colors duration-200 rounded-full">
+                    <span className="text-[11px] leading-none">
+                      {staticAnimationsLength + animationsLength}
+                    </span>
+                  </div>
+                </div>
+              </AnimateIcon>
+            );
+          })}
         </MotionHighlight>
       </div>
     </div>
