@@ -22,6 +22,7 @@
     "ui-elements/management-bar",
     "ui-elements/user-presence-avatar",
     "ui-elements/playful-todolist",
+    "ui-elements/animated-pin-list",
     "---Effects---",
     "effects/motion-effect",
     "effects/motion-highlight",

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "animated-pin-list-demo",
+  "type": "registry:ui",
+  "title": "Animated Pin List Demo",
+  "description": "Demo Animated Pin List.",
+  "registryDependencies": [
+    "https://animate-ui.com/r/animated-pin-list"
+  ],
+  "files": [
+    {
+      "path": "registry/demo/ui-elements/animated-pin-list/index.tsx",
+      "content": "'use client';\n\nimport * as React from 'react';\n\nimport { AnimatedPinList } from '@/components/animate-ui/ui-elements/animated-pin-list';\n\nexport const AnimatedPinListDemo = () => <AnimatedPinList />;\n",
+      "type": "registry:ui",
+      "target": "components/animate-ui/demo/ui-elements/animated-pin-list.tsx"
+    }
+  ]
+}

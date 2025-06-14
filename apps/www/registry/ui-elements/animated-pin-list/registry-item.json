@@ -1,0 +1,19 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+  "name": "animated-pin-list",
+  "type": "registry:ui",
+  "title": "Animated Pin List",
+  "description": "Animated Pin List Component",
+  "dependencies": [
+    "motion",
+    "lucide-react"
+  ],
+  "registryDependencies": [],
+  "files": [
+    {
+      "path": "registry/ui-elements/animated-pin-list/index.tsx",
+      "type": "registry:ui",
+      "target": "components/animate-ui/ui-elements/animated-pin-list.tsx"
+    }
+  ]
+}
