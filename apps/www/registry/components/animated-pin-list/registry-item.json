@@ -5,15 +5,14 @@
   "title": "Animated Pin List",
   "description": "Animated Pin List Component",
   "dependencies": [
-    "motion",
-    "lucide-react"
+    "motion"
   ],
   "registryDependencies": [],
   "files": [
     {
-      "path": "registry/ui-elements/animated-pin-list/index.tsx",
+      "path": "registry/components/animated-pin-list/index.tsx",
       "type": "registry:ui",
-      "target": "components/animate-ui/ui-elements/animated-pin-list.tsx"
+      "target": "components/animate-ui/components/animated-pin-list.tsx"
     }
   ]
 }

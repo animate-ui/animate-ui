@@ -9,9 +9,9 @@
   ],
   "files": [
     {
-      "path": "registry/demo/ui-elements/animated-pin-list/index.tsx",
+      "path": "registry/demo/components/animated-pin-list/index.tsx",
       "type": "registry:ui",
-      "target": "components/animate-ui/demo/ui-elements/animated-pin-list.tsx"
+      "target": "components/animate-ui/demo/components/animated-pin-list.tsx"
     }
   ]
 }
