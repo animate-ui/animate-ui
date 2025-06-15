@@ -367,6 +367,23 @@
       ]
     },
     {
+      "name": "animated-pin-list",
+      "type": "registry:ui",
+      "title": "Animated Pin List",
+      "description": "Animated Pin List Component",
+      "dependencies": [
+        "motion"
+      ],
+      "registryDependencies": [],
+      "files": [
+        {
+          "path": "registry/components/animated-pin-list/index.tsx",
+          "type": "registry:ui",
+          "target": "components/animate-ui/components/animated-pin-list.tsx"
+        }
+      ]
+    },
+    {
       "name": "avatar-group",
       "type": "registry:ui",
       "title": "Avatar Group",
@@ -1208,6 +1225,22 @@
           "path": "registry/demo/buttons/ripple/index.tsx",
           "type": "registry:ui",
           "target": "components/animate-ui/demo/buttons/ripple.tsx"
+        }
+      ]
+    },
+    {
+      "name": "animated-pin-list-demo",
+      "type": "registry:ui",
+      "title": "Animated Pin List Demo",
+      "description": "Demo Animated Pin List.",
+      "registryDependencies": [
+        "https://animate-ui.com/r/animated-pin-list"
+      ],
+      "files": [
+        {
+          "path": "registry/demo/components/animated-pin-list/index.tsx",
+          "type": "registry:ui",
+          "target": "components/animate-ui/demo/components/animated-pin-list.tsx"
         }
       ]
     },

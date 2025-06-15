@@ -8,6 +8,7 @@
     "mcp",
     "icons",
     "---Components---",
+    "components/animated-pin-list",
     "components/avatar-group",
     "components/code-editor",
     "components/code-tabs",
