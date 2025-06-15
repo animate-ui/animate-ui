@@ -121,7 +121,7 @@ function AnimatedPinList() {
                   layoutId={`item-${item.id}`}
                   onClick={() => toggleStatus(item.id)}
                   transition={ITEM_MOTION_TRANSITION}
-                  className="flex items-center justify-between gap-5 rounded-2xl bg-neutral-200 dark:bg-neutral-800 px-3 py-2"
+                  className="flex items-center justify-between gap-5 rounded-2xl bg-neutral-200 dark:bg-neutral-800 p-2"
                 >
                   <div className="flex items-center gap-2">
                     <div className="rounded-lg bg-background p-2">
@@ -169,7 +169,7 @@ function AnimatedPinList() {
                   layoutId={`item-${item.id}`}
                   onClick={() => toggleStatus(item.id)}
                   transition={ITEM_MOTION_TRANSITION}
-                  className="flex items-center justify-between gap-5 rounded-2xl bg-neutral-200 dark:bg-neutral-800 px-3 py-2 group"
+                  className="flex items-center justify-between gap-5 rounded-2xl bg-neutral-200 dark:bg-neutral-800 p-2 group"
                 >
                   <div className="flex items-center gap-2">
                     <div className="rounded-lg bg-background p-2">
