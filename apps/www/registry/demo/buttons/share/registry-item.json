@@ -1,0 +1,35 @@
+{
+    "$schema": "https://ui.shadcn.com/schema/registry-item.json",
+    "name": "share-button-demo",
+    "type": "registry:ui",
+    "title": "Share Button Demo",
+    "description": "Demo showing share button",
+    "registryDependencies": [
+        "https://animate-ui.com/r/share-button"
+    ],
+    "files": [
+        {
+            "path": "registry/demo/buttons/share/index.tsx",
+            "type": "registry:ui",
+            "target": "components/animate-ui/demo/buttons/share.tsx"
+        }
+    ],
+    "meta": {
+        "demoProps": {
+            "ShareButtonDemo": {
+                "children": {
+                    "value": "Share"
+                },
+                "className": {
+                    "value": "bg-primary text-primary-foreground hover:bg-primary/90"
+                },
+                "size": {
+                    "value": "default"
+                },
+                "icon": {
+                    "value": "prefix"
+                }
+            }
+        }
+    }
+}

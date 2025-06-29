@@ -1,0 +1,60 @@
+---
+title: Share Button
+description: This is a button for sharing.
+author:
+  name: ChenHaoJie9527
+  url: https://github.com/ChenHaoJie9527
+new: true
+---
+
+<ComponentPreview name="share-button-demo" />
+
+## Installation
+
+<ComponentInstallation name="share-button-demo" />
+
+## Usage
+
+```tsx
+<ShareButton>Share</ShareButton>
+```
+
+## Props
+
+<TypeTable
+  type={{
+    children: {
+      description: 'The children of the component',
+      type: 'React.ReactNode',
+      required: true,
+    },
+    className: {
+      description: 'The className of the component',
+      type: 'string',
+      required: false,
+    },
+    size: {
+      description:
+        'The size of the component, can be "sm", "md", "lg" or "default"',
+      type: 'string',
+      required: false,
+      default: 'default',
+    },
+    icon: {
+      description: 'The icon of the component, can be "prefix" or "suffix"',
+      type: 'string',
+      required: false,
+      default: undefined,
+    },
+    onIconClick: {
+      description: 'The callback function when the icon is clicked',
+      type: '(platform: "github" | "x" | "facebook") => void',
+      required: false,
+      default: undefined,
+    },
+  }}
+/>
+
+## Credits
+
+- Credits to [SharpTH](https://uiverse.io/SharpTH/swift-bullfrog-75) for the inspiration

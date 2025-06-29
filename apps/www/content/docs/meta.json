@@ -72,6 +72,7 @@
     "buttons/input",
     "buttons/liquid",
     "buttons/ripple",
+    "buttons/share",
     "---Text Animations---",
     "text/counting-number",
     "text/gradient",
