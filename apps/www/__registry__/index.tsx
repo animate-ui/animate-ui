@@ -4905,6 +4905,49 @@ export const index: Record<string, any> = {
     })(),
     command: 'https://animate-ui.com/r/shimmering-text-demo',
   },
+  'shiny-text-demo': {
+    name: 'shiny-text-demo',
+    description: 'Demo showing an animated shiny text.',
+    type: 'registry:ui',
+    dependencies: undefined,
+    devDependencies: undefined,
+    registryDependencies: ['https://animate-ui.com/r/shiny-text'],
+    files: [
+      {
+        path: 'registry/demo/text/shiny/index.tsx',
+        type: 'registry:ui',
+        target: 'components/animate-ui/demo/text/shiny.tsx',
+        content:
+          "'use client';\n\nimport { ShinyText, ShinyTextProps } from '@/components/animate-ui/text/shiny';\n\ntype ShinyTextDemoProps = ShinyTextProps & {\n  text: string;\n};\n\nexport const ShinyTextDemo = ({ text, ...props }: ShinyTextDemoProps) => {\n  return <ShinyText text={text} theme=\"auto\" {...props} />;\n};",
+      },
+    ],
+    keywords: [],
+    component: (function () {
+      const LazyComp = React.lazy(async () => {
+        const mod = await import('@/registry/demo/text/shiny/index.tsx');
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === 'function' || typeof mod[key] === 'object',
+          ) || 'shiny-text-demo';
+        const Comp = mod.default || mod[exportName];
+        if (mod.animations) {
+          (LazyComp as any).animations = mod.animations;
+        }
+        return { default: Comp };
+      });
+      LazyComp.demoProps = {
+        ShinyTextDemo: {
+          text: 'Shiny Text',
+          speed: 5,
+          theme: 'dark',
+          disable: false,
+        },
+      };
+      return LazyComp;
+    })(),
+    command: 'https://animate-ui.com/r/shiny-text-demo',
+  },
   'sliding-number-demo': {
     name: 'sliding-number-demo',
     description: 'Demo showing an animated sliding number.',
@@ -12836,6 +12879,43 @@ export const index: Record<string, any> = {
       return LazyComp;
     })(),
     command: 'https://animate-ui.com/r/shimmering-text',
+  },
+  'shiny-text': {
+    name: 'shiny-text',
+    description:
+      'A text component that smoothly animates text changes with a shiny transition effect.',
+    type: 'registry:ui',
+    dependencies: ['motion'],
+    devDependencies: undefined,
+    registryDependencies: undefined,
+    files: [
+      {
+        path: 'registry/text/shiny/index.tsx',
+        type: 'registry:ui',
+        target: 'components/animate-ui/text/shiny.tsx',
+        content:
+          "'use client';\n\nimport * as React from 'react';\nimport { cn } from '@/lib/utils';\nimport { motion } from 'motion/react';\n\ntype ShinyTextProps = React.ComponentProps<'div'> & {\n  text: string;\n  speed?: number;\n  disable?: boolean;\n  shimmerColor?: string;\n  baseColor?: string;\n  theme?: 'light' | 'dark' | 'auto';\n};\n\nconst ShinyText = ({\n  text,\n  speed = 5,\n  disable = false,\n  shimmerColor,\n  baseColor,\n  theme = 'auto',\n  className,\n  style,\n  ...props\n}: ShinyTextProps) => {\n  const animationDuration = speed;\n\n  const getColors = () => {\n    if (shimmerColor && baseColor) {\n      return { shimmer: shimmerColor, base: baseColor };\n    }\n\n    switch (theme) {\n      case 'light':\n        return {\n          shimmer: '#000000',\n          base: '#9ca3af',\n        };\n      case 'dark':\n        return {\n          shimmer: '#ffffff',\n          base: '#6b7280',\n        };\n      default: // auto\n        return {\n          shimmer: '#000000',\n          base: '#9ca3af',\n        };\n    }\n  };\n\n  const colors = getColors();\n\n  // 使用CSS变量传递动态颜色\n  const cssVariables = {\n    '--shiny-text-base-color': colors.base,\n    '--shiny-text-shimmer-color': colors.shimmer,\n  } as React.CSSProperties;\n\n  return (\n    <div\n      className={cn('relative inline-block', className)}\n      style={{ ...cssVariables, ...style }}\n      {...props}\n    >\n      <div className=\"font-semibold text-[var(--shiny-text-base-color)]\">\n        {text}\n      </div>\n\n      {!disable && (\n        <motion.div\n          className={cn(\n            'absolute inset-0 font-semibold overflow-hidden pointer-events-none',\n            'bg-gradient-to-r bg-clip-text text-transparent',\n            'bg-[length:200%_100%]',\n            '[background-image:linear-gradient(120deg,transparent_0%,transparent_40%,var(--shiny-text-shimmer-color)_50%,transparent_60%,transparent_100%)]',\n            '[background-clip:text] [-webkit-background-clip:text]',\n            '[color:transparent] [-webkit-text-fill-color:transparent]',\n          )}\n          animate={{\n            backgroundPosition: ['100% 0%', '-100% 0%'],\n          }}\n          transition={{\n            duration: animationDuration,\n            ease: 'linear',\n            repeat: Infinity,\n          }}\n        >\n          {text}\n        </motion.div>\n      )}\n    </div>\n  );\n};\n\nexport { ShinyText, type ShinyTextProps };",
+      },
+    ],
+    keywords: [],
+    component: (function () {
+      const LazyComp = React.lazy(async () => {
+        const mod = await import('@/registry/text/shiny/index.tsx');
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === 'function' || typeof mod[key] === 'object',
+          ) || 'shiny-text';
+        const Comp = mod.default || mod[exportName];
+        if (mod.animations) {
+          (LazyComp as any).animations = mod.animations;
+        }
+        return { default: Comp };
+      });
+      LazyComp.demoProps = {};
+      return LazyComp;
+    })(),
+    command: 'https://animate-ui.com/r/shiny-text',
   },
   'sliding-number': {
     name: 'sliding-number',
