@@ -788,6 +788,42 @@ export const index: Record<string, any> = {
     })(),
     command: 'https://animate-ui.com/r/ripple-button',
   },
+  'share-button': {
+    name: 'share-button',
+    description: 'This is a button for sharing',
+    type: 'registry:ui',
+    dependencies: ['motion', 'lucide-react', 'class-variance-authority'],
+    devDependencies: undefined,
+    registryDependencies: undefined,
+    files: [
+      {
+        path: 'registry/buttons/share/index.tsx',
+        type: 'registry:ui',
+        target: 'components/animate-ui/buttons/share.tsx',
+        content:
+          "'use client';\nimport * as React from 'react';\nimport { Share2, Github, X, Facebook } from 'lucide-react';\nimport { cva, type VariantProps } from 'class-variance-authority';\nimport { cn } from '@/lib/utils';\nimport { HTMLMotionProps, motion, AnimatePresence } from 'motion/react';\n\nconst buttonVariants = cva(\n  \"relative overflow-hidden cursor-pointer inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-lg text-sm font-medium transition-all disabled:pointer-events-none disabled:opacity-50 [&_svg]:pointer-events-none [&_svg:not([class*='size-'])]:size-4 shrink-0 [&_svg]:shrink-0 outline-none focus-visible:border-ring focus-visible:ring-ring/50 focus-visible:ring-[3px] aria-invalid:ring-destructive/20 dark:aria-invalid:ring-destructive/40 aria-invalid:border-destructive\",\n  {\n    variants: {\n      variant: {\n        default: 'bg-primary text-primary-foreground hover:bg-primary/90',\n      },\n      size: {\n        default: 'min-w-28 h-10 px-4 py-2',\n        sm: 'min-w-24 h-9 rounded-md gap-1.5 px-3',\n        lg: 'min-w-32 h-11 px-8',\n      },\n      icon: {\n        suffix: 'pl-4',\n        prefix: 'pr-4',\n      },\n    },\n    defaultVariants: {\n      variant: 'default',\n      size: 'default',\n    },\n  },\n);\n\nconst iconSizeMap = {\n  sm: 16,\n  md: 20,\n  lg: 28,\n  default: 16,\n};\n\ntype ShareButtonProps = HTMLMotionProps<'button'> & {\n  children: React.ReactNode;\n  className?: string;\n  variant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost';\n  size?: 'default' | 'sm' | 'lg';\n  icon?: 'suffix' | 'prefix';\n  onIconClick?: (platform: 'github' | 'x' | 'facebook') => void;\n} & VariantProps<typeof buttonVariants>;\n\nfunction ShareButton({\n  children,\n  className,\n  variant,\n  size = 'default',\n  icon,\n  onIconClick,\n  ...props\n}: ShareButtonProps) {\n  const [hovered, setHovered] = React.useState(false);\n  return (\n    <motion.button\n      className={cn(buttonVariants({ variant, size, className, icon }))}\n      onMouseEnter={() => setHovered(true)}\n      onMouseLeave={() => setHovered(false)}\n      {...props}\n    >\n      <AnimatePresence initial={false} mode=\"wait\">\n        {!hovered ? (\n          <motion.div\n            key=\"content\"\n            initial={{ opacity: 1, y: 0 }}\n            animate={{ opacity: 1, y: 0 }}\n            exit={{ opacity: 0, y: -24 }}\n            transition={{ duration: 0.3 }}\n            className=\" absolute left-0 right-0 top-0 bottom-0 flex items-center justify-center gap-2\"\n          >\n            {icon === 'prefix' && (\n              <Share2 className=\"size-4\" size={iconSizeMap[size]} />\n            )}\n            {children}\n            {icon === 'suffix' && (\n              <Share2 className=\"size-4\" size={iconSizeMap[size]} />\n            )}\n          </motion.div>\n        ) : (\n          <motion.div\n            key=\"icons\"\n            initial={{ opacity: 0, y: 24 }}\n            animate={{ opacity: 1, y: 0 }}\n            exit={{ opacity: 0, y: 24 }}\n            transition={{ duration: 0.3 }}\n            className=\" absolute left-0 right-0 top-0 bottom-0 flex items-center justify-center gap-2\"\n          >\n            <ShareIconGroup size={size} onIconClick={onIconClick} />\n          </motion.div>\n        )}\n      </AnimatePresence>\n    </motion.button>\n  );\n}\n\nconst shareIconGroupVariants = cva('flex items-center justify-center gap-3', {\n  variants: {\n    size: {\n      sm: 'text-[16px]',\n      md: 'text-[20px]',\n      lg: 'text-[28px]',\n      default: 'text-[16px]',\n    },\n  },\n  defaultVariants: {\n    size: 'default',\n  },\n});\n\ntype ShareIconGroupProps = HTMLMotionProps<'div'> & {\n  size?: 'sm' | 'md' | 'lg' | 'default';\n  className?: string;\n  onIconClick?: (\n    platform: 'github' | 'x' | 'facebook',\n    event: React.MouseEvent<HTMLDivElement>,\n  ) => void;\n} & VariantProps<typeof shareIconGroupVariants>;\n\nfunction ShareIconGroup({\n  size = 'default',\n  className,\n  onIconClick,\n}: ShareIconGroupProps) {\n  const iconSize = iconSizeMap[size];\n\n  const handleIconClick = React.useCallback(\n    (\n      platform: 'github' | 'x' | 'facebook',\n      event: React.MouseEvent<HTMLDivElement>,\n    ) => {\n      onIconClick?.(platform, event);\n    },\n    [onIconClick],\n  );\n\n  return (\n    <motion.div\n      className={cn(shareIconGroupVariants({ size }), 'group', className)}\n    >\n      <motion.div\n        initial={{ opacity: 0, y: 24 }}\n        animate={{ opacity: 1, y: 0 }}\n        transition={{ delay: 0, duration: 0.5, type: 'spring', bounce: 0.4 }}\n        className=\"group-hover:opacity-100 hover:text-primary hover:scale-110\"\n        onClick={(event) => handleIconClick('github', event)}\n      >\n        <Github size={iconSize} />\n      </motion.div>\n      <motion.div\n        initial={{ opacity: 0, y: 24 }}\n        animate={{ opacity: 1, y: 0 }}\n        transition={{ delay: 0.1, duration: 0.5, type: 'spring', bounce: 0.4 }}\n        className=\"group-hover:opacity-100 hover:text-primary hover:scale-110\"\n        onClick={(event) => handleIconClick('x', event)}\n      >\n        <X size={iconSize} />\n      </motion.div>\n      <motion.div\n        initial={{ opacity: 0, y: 24 }}\n        animate={{ opacity: 1, y: 0 }}\n        transition={{ delay: 0.2, duration: 0.5, type: 'spring', bounce: 0.4 }}\n        className=\"group-hover:opacity-100 hover:text-primary hover:scale-110\"\n        onClick={(event) => handleIconClick('facebook', event)}\n      >\n        <Facebook size={iconSize} />\n      </motion.div>\n    </motion.div>\n  );\n}\n\nexport { ShareButton, type ShareButtonProps, ShareIconGroup };",
+      },
+    ],
+    keywords: [],
+    component: (function () {
+      const LazyComp = React.lazy(async () => {
+        const mod = await import('@/registry/buttons/share/index.tsx');
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === 'function' || typeof mod[key] === 'object',
+          ) || 'share-button';
+        const Comp = mod.default || mod[exportName];
+        if (mod.animations) {
+          (LazyComp as any).animations = mod.animations;
+        }
+        return { default: Comp };
+      });
+      LazyComp.demoProps = {};
+      return LazyComp;
+    })(),
+    command: 'https://animate-ui.com/r/share-button',
+  },
   'avatar-group': {
     name: 'avatar-group',
     description:
@@ -2415,6 +2451,51 @@ export const index: Record<string, any> = {
       return LazyComp;
     })(),
     command: 'https://animate-ui.com/r/ripple-button-demo',
+  },
+  'share-button-demo': {
+    name: 'share-button-demo',
+    description: 'Demo showing share button',
+    type: 'registry:ui',
+    dependencies: undefined,
+    devDependencies: undefined,
+    registryDependencies: ['https://animate-ui.com/r/share-button'],
+    files: [
+      {
+        path: 'registry/demo/buttons/share/index.tsx',
+        type: 'registry:ui',
+        target: 'components/animate-ui/demo/buttons/share.tsx',
+        content:
+          "'use client';\nimport { ShareButton, type ShareButtonProps } from '@/components/animate-ui/buttons/share';\nimport { cn } from '@/lib/utils';\n\ntype ShareButtonDemoProps = {\n  children: React.ReactNode;\n  className?: string;\n  size?: 'default' | 'sm' | 'lg';\n  icon?: 'suffix' | 'prefix';\n} & ShareButtonProps;\n\nexport const ShareButtonDemo = ({\n  children,\n  className,\n  size,\n  icon,\n  ...props\n}: ShareButtonDemoProps) => {\n  return (\n    <ShareButton {...props} className={cn(className)} size={size} icon={icon}>\n      {children}\n    </ShareButton>\n  );\n};",
+      },
+    ],
+    keywords: [],
+    component: (function () {
+      const LazyComp = React.lazy(async () => {
+        const mod = await import('@/registry/demo/buttons/share/index.tsx');
+        const exportName =
+          Object.keys(mod).find(
+            (key) =>
+              typeof mod[key] === 'function' || typeof mod[key] === 'object',
+          ) || 'share-button-demo';
+        const Comp = mod.default || mod[exportName];
+        if (mod.animations) {
+          (LazyComp as any).animations = mod.animations;
+        }
+        return { default: Comp };
+      });
+      LazyComp.demoProps = {
+        ShareButtonDemo: {
+          children: { value: 'Share' },
+          className: {
+            value: 'bg-primary text-primary-foreground hover:bg-primary/90',
+          },
+          size: { value: 'default' },
+          icon: { value: 'prefix' },
+        },
+      };
+      return LazyComp;
+    })(),
+    command: 'https://animate-ui.com/r/share-button-demo',
   },
   'avatar-group-demo': {
     name: 'avatar-group-demo',
